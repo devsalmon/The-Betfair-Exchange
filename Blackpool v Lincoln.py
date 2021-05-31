@@ -16,9 +16,9 @@ football_match_url = endpoint + "listMarketCatalogue/"
 match_market_url = endpoint + "listMarketBook/"
 place_orders_url = endpoint + "placeOrders/"
 
-match_sought_for = input("Football Match: ")
-runner_selection = input("Who to Lay/Back: ")
-LAY_or_BACK = (input("Lay or Back " + runner_selection + "? ")).upper()
+match_sought_for = "Blackpool v Lincoln"##input("Football Match: ")
+runner_selection = "The Draw"#input("Who to Lay/Back: ")
+LAY_or_BACK = "BACK"##(input("Lay or Back " + runner_selection + "? ")).upper()
 
 header = { 'X-Application' : APP_KEY, 'X-Authentication' : SESSION_TOKEN,'content-type' : 'application/json' }
 
@@ -59,7 +59,6 @@ for event in formatted_football_events:
         ## get the ID of that event.
         eventID = event['event']['id']
         print("Event ID: " + eventID)
-    
 
 ## Requests market information for selected match.   
 ## eventIDs is the id of the match
@@ -141,7 +140,7 @@ formatted_market_details = json.loads(market_details_response.text)
 ##        print("Market ID: " + marketID)
 
 ## Requests to place a bet for selected market.
-json_req_place_bet='{"marketId": "'+marketID+'", "instructions": [{"selectionId": "'+selectionID+'","handicap": "0", "side": "'+LAY_or_BACK+'", "orderType": "LIMIT", "limitOrder": {"size": "2", "price": "1.01", "persistenceType": "LAPSE"}}]}'
+json_req_place_bet='{"marketId": "'+marketID+'", "instructions": [{"selectionId": "'+selectionID+'","handicap": "0", "side": "'+LAY_or_BACK+'", "orderType": "LIMIT", "limitOrder": {"size": "2", "price": "3.4", "persistenceType": "LAPSE"}}]}'
 
 ##[
 ##    {
@@ -167,7 +166,7 @@ json_req_place_bet='{"marketId": "'+marketID+'", "instructions": [{"selectionId"
 ##    }
 ##]
 
-## Places a bet and when printed, returns placeOrder response.
+## When printed, returns placeOrder response.
 req_bet_response = requests.post(place_orders_url, data=json_req_place_bet, headers=header)
 ## Converts response to json.
 formatted_req_bet = json.loads(req_bet_response.text)
@@ -181,3 +180,4 @@ print(formatted_req_bet)
 ##print(json.dumps(json.loads(market_details_response.text), indent=3))
 ##y = json.loads(match_market_response.text)
 ##print(y[0]['status'])
+
