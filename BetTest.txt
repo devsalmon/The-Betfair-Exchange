@@ -1,0 +1,66 @@
+Sold trade details for: Romania v Georgia
+Guaranteed loss: -1.3502538071065988	Would have won £2 if kept lay.
+Sold trade details for: Fortaleza EC v Ceara SC Fortaleza
+Guaranteed profit: 0.43037974683544267  Would have lost liability of around £4.50.
+Date: 2021-06-03T01:48:57.000Z
+Match: Fluminense v Bragantino SP
+Liability: 4.6
+Sold for guaranteed loss: -1.548387096774194	Would have won £2 if kept lay.
+Date: 2021-06-03T12:54:16.000Z
+Match: Shaanxi Changan Athletic v Zhejiang Greentown
+Liability: 4.8
+Sold for guaranteed profit: 0.23376623376623407	Would have lost 4.8 if kept lay.
+Date: 2021-06-03T16:35:21.000Z
+Match: Atenas v Rampla Juniors
+Liability: 4.7
+Sold for guaranteed loss: -1.2211538461538458	Would have lost 4.7 if kept lay.
+Date: 2021-06-04T03:19:33.000Z
+Match: Peru v Colombia
+Liability: 4.9
+Back price: 34.0
+Sold for guaranteed profit: 1.7970588235294116	Would have won £2 if kept lay.
+Date: 2021-06-04T19:49:49.000Z
+Match: Nigeria v Cameroon
+Liability: 4.2
+Back price: 3.45
+Sold for guaranteed profit: 0.2028985507246377	Would have won £2 if kept lay.
+Date: 2021-06-04T21:49:49.000Z
+Match: Goias v Confianca
+Liability: 4.5
+Back price: 26.0
+Sold for guaranteed profit: 1.75		Would have won £2 if kept lay.		Total: 0.29/-4
+Date: 2021-06-04T23:19:46.000Z
+Match: Colon v Racing Club
+Liability: 4.4
+Back price: 1.89
+Sold for guaranteed loss: -1.386243386243386	Would have won £2 if kept lay.
+Date: 2021-06-05T05:49:42.000Z
+Match: Renofa Yamaguchi v Ehime
+Liability: 4.8
+Back price: 4.3
+Sold for guaranteed profit: 0.41860465116279055	Would have lost £4.80 if kept lay.
+Date: 2021-06-05T07:19:35.000Z
+Match: Blaublitz Akita v FC Ryukyu
+Liability: 4.6
+Back price: 2.1
+Sold for guaranteed loss: -1.1428571428571423	Would have lost £4.60 if kept lay.
+Date: 2021-06-05T10:49:42.000Z
+Match: Bucheon FC 1995 v Asan Mugunghwa FC
+Liability: 4.6
+Back price: 1.9
+Sold for guaranteed loss: -1.4736842105263168	Would have won £2 if kept lay.
+Date: 2021-06-05T12:19:59.000Z
+Match: IK Brage v AFC Utd
+Liability: 5.0
+Back price: 1.74
+Sold for guaranteed loss: -2.0229885057471257	Would have won £2 if kept lay.
+Date: 2021-06-05T14:19:51.000Z
+Match: Black Leopards v Bloemfontein Celtic
+Liability: 4.9
+Back price: 3.65
+Sold for guaranteed profit: 0.10958904109588996	Would have lost £4.90 if kept lay.
+Date: 2021-06-05T16:19:42.000Z
+Match: AS Khroub v Chelghoum Laid
+Liability: 4.8
+Back price: 2.0
+Sold for guaranteed loss: -1.3999999999999995	Would have lost £4.80 if kept lay.

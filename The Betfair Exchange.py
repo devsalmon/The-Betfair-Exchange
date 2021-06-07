@@ -9,8 +9,8 @@ footballID = "1"
 eventID = ''
 marketID = ''
 selectionID = ''
-START_DATE = "2021-05-30T08:00:00Z"
-END_DATE = "2021-05-30T22:00:00Z"
+START_DATE = "2021-06-01T08:00:00Z"
+END_DATE = "2021-06-01T23:00:00Z"
 football_events_url = endpoint + "listEvents/"
 football_match_url = endpoint + "listMarketCatalogue/"
 match_market_url = endpoint + "listMarketBook/"
@@ -141,7 +141,7 @@ formatted_market_details = json.loads(market_details_response.text)
 ##        print("Market ID: " + marketID)
 
 ## Requests to place a bet for selected market.
-json_req_place_bet='{"marketId": "'+marketID+'", "instructions": [{"selectionId": "'+selectionID+'","handicap": "0", "side": "'+LAY_or_BACK+'", "orderType": "LIMIT", "limitOrder": {"size": "2", "price": "1.01", "persistenceType": "LAPSE"}}]}'
+json_req_place_bet='{"marketId": "'+marketID+'", "instructions": [{"selectionId": "'+selectionID+'","handicap": "0", "side": "'+LAY_or_BACK+'", "orderType": "LIMIT", "limitOrder": {"size": "0.10", "price": "7.0", "persistenceType": "LAPSE"}}]}'
 
 ##[
 ##    {
