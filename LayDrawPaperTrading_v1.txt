@@ -63,4 +63,4 @@ Date: 2021-06-05T16:19:42.000Z
 Match: AS Khroub v Chelghoum Laid
 Liability: 4.8
 Back price: 2.0
-Sold for guaranteed loss: -1.3999999999999995	Would have lost £4.80 if kept lay.
+Sold for guaranteed loss: -1.3999999999999995	Would have lost £4.80 if kept lay.	Total: -6.60/-17.1

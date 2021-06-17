@@ -1,3 +1,4 @@
+# Reverse trade for Lay-draw
 #Finds lowest lay draw odds.
 import requests
 import json
@@ -11,7 +12,7 @@ run = True
 while run == True:
     current_time = time.strftime('%Y-%m-%dT%H:%M:%S.000Z', time.gmtime())
     #current_time = datetime.datetime.now(pytz.timezone('GMT')).strftime('%Y-%m-%dT%H:%M:%SZ')
-    filename = "LayDrawPaperTrading_v1.txt"
+    filename = "ReverseLayDrawPaperTrading_v1.txt"
     endpoint = "https://api.betfair.com/exchange/betting/rest/v1.0/"
     APP_KEY = 'iym7OLs6r9EYcFYv'
     SESSION_TOKEN = 'macUxDuwq/y9SNCdB5B10jxuegqiJh0r9Rr83pmFzvI='
@@ -21,7 +22,7 @@ while run == True:
     selectionID = ''
     ##GMT is UK time - 1 hour.
     START_DATE = "2021-06-08T10:00:00Z"
-    END_DATE = "2021-06-08T19:59:59Z"
+    END_DATE = "2021-06-08T23:59:59Z"
     football_events_url = endpoint + "listEvents/"
     football_match_url = endpoint + "listMarketCatalogue/"
     match_market_url = endpoint + "listMarketBook/"
@@ -32,10 +33,11 @@ while run == True:
     eventID_list = []
     marketID_list = []
     selectionID_list = []
-    lay_draw_odds_list = []
-    lay_draw_odds_under_3point5_list = []
+    back_draw_odds_list = []
+    back_draw_odds_under_3point5_list = []
+    bet_profit_list = []
     liability_list = []
-    available_lay_size_for_U3point5_list = []
+    available_back_size_for_U3point5_list = []
     index_of_odds_under_3point5_list = []
     start_time_of_selected_matches_list = []
     number_of_bets_today = 0
@@ -108,18 +110,18 @@ while run == True:
 
                                 ## Check that odds are for draw.
                                 if outcome['selectionId'] == selectionID:
-                                    ## Get best lay price if it exists.
-                                    if outcome['ex']['availableToLay']:
-                                        best_lay_price = outcome['ex']['availableToLay'][0]['price']
-                                        ## Get the available size to lay.
-                                        available_lay_size = outcome['ex']['availableToLay'][0]['size']
-                                        print("Lay draw odds: " + str(best_lay_price))
+                                    ## Get best back price if it exists.
+                                    if outcome['ex']['availableToBack']:
+                                        best_back_price = outcome['ex']['availableToBack'][0]['price']
+                                        ## Get the available size to back.
+                                        available_back_size = outcome['ex']['availableToBack'][0]['size']
+                                        print("Back draw odds: " + str(best_back_price))
                                         ## Adds best odds to the list.
-                                        lay_draw_odds_list.append(best_lay_price)
+                                        back_draw_odds_list.append(best_back_price)
                                         index_pos += 1
-                                        print("Available lay size: " + str(available_lay_size))
+                                        print("Available back size: " + str(available_back_size))
                                         ## If odds are low enough...
-                                        if best_lay_price <= 3.5: #and available_lay_size > 10:
+                                        if best_back_price <= 3.5 and best_back_price >= 3.0: #and available_lay_size > 10:
                                             print("BELLOW 3.5")
                                             ## Adds event name of selected event to list.
                                             eventName_list.append(event['event']['name'])
@@ -130,33 +132,41 @@ while run == True:
                                             ## Adds selectionID of The Draw to list...
                                             selectionID_list.append(selectionID)
                                             ## Adds odds to new list.
-                                            lay_draw_odds_under_3point5_list.append(best_lay_price)
-                                            ## Adds available lay size for these odds to new list.
-                                            available_lay_size_for_U3point5_list.append(available_lay_size)
+                                            back_draw_odds_under_3point5_list.append(best_back_price)
+                                            ## Adds available back size for these odds to new list.
+                                            available_back_size_for_U3point5_list.append(available_back_size)
                                             ## Adds index pos of selected odds to list.
                                             index_of_odds_under_3point5_list.append(index_pos)
                                             ## Adds start times of selected matches to list.
                                             start_time_of_selected_matches_list.append(event['event']['openDate'])
-                                            ## Lay the draw with stake £2.
-                                            liability = (2 * best_lay_price) - 2
-                                            liability_list.append(liability)
+                                            ## Back the draw with stake £2.
+                                            bet_profit = (2 * best_back_price) - 2
+                                            bet_profit_list.append(bet_profit)
                                             ## Adds difference in hours to a list.
                                             difference_in_hours_list.append(difference_in_hours)
                                             ## Adds time until min 61 of match to a list.
                                             time_until_min_61 = difference_in_hours + 1.3
-                                            time_until_min_61_list.append(time_until_min_61)
-                                            ## Bet Calculations
-                                            
-    print("Lay-draw odds list: ")
-    print(lay_draw_odds_list)
-    print("Min lay-draw odds: ")
-    print(min(lay_draw_odds_list))
-    print("Index pos of min lay-draw odds: ")
-    print(lay_draw_odds_list.index(min(lay_draw_odds_list)))
-    print("Lay-draw odds under 3.5: ")
-    print(lay_draw_odds_under_3point5_list)
-    print("Available lay size: ")
-    print(available_lay_size_for_U3point5_list)
+                                            time_until_min_61_list.append(time_until_min_61)                                            
+#############################################################################################
+##                                            liability = (2 * best_lay_price) - 2
+##                                            liability_list.append(liability)
+##                                            ## Adds difference in hours to a list.
+##                                            difference_in_hours_list.append(difference_in_hours)
+##                                            ## Adds time until min 61 of match to a list.
+##                                            time_until_min_61 = difference_in_hours + 1.3
+##                                            time_until_min_61_list.append(time_until_min_61)
+##                                            ## Bet Calculations
+########################################################################################################                                            
+    print("Back-draw odds list: ")
+    print(back_draw_odds_list)
+    print("Min back-draw odds: ")
+    print(min(back_draw_odds_list))
+    print("Index pos of min back-draw odds: ")
+    print(back_draw_odds_list.index(min(back_draw_odds_list)))
+    print("Back-draw odds under 3.5: ")
+    print(back_draw_odds_under_3point5_list)
+    print("Available back size: ")
+    print(available_back_size_for_U3point5_list)
     print("Index pos of odds under 3.5: ")
     print(index_of_odds_under_3point5_list)
     print("Start time of selected matches: ")
@@ -169,8 +179,8 @@ while run == True:
     print(marketID_list)
     print("Selection ID list: ")
     print(selectionID_list)
-    print("Liability list: ")
-    print(liability_list)
+    print("Bet profit list: ")
+    print(bet_profit_list)
     print("Current time: " + current_time)
     print("Difference in time list: ")
     print(difference_in_hours_list)
@@ -195,43 +205,50 @@ while run == True:
         ## Check that odds are for draw.
         if outcome['selectionId'] == selectionID_list[index_of_smallest_time_left]:
             ## Get best lay price if it exists.
-            if outcome['ex']['availableToBack']:
-                best_back_price = outcome['ex']['availableToBack'][0]['price']
+            if outcome['ex']['availableToLay']:
+                best_lay_price = outcome['ex']['availableToLay'][0]['price']
                 ## Get the available size to lay.
-                available_back_size = outcome['ex']['availableToBack'][0]['size']
-                print("Back draw odds: " + str(best_back_price))
-                print("Available back size: " + str(available_back_size))
-                ## If backing odds are above what I layed (profit)...
-                ## Replace 3.8 with best_back_price.
-                if best_back_price >= lay_draw_odds_under_3point5_list[index_of_smallest_time_left]: #and available_back_size > 10:
+                available_lay_size = outcome['ex']['availableToLay'][0]['size']
+                print("Lay draw odds: " + str(best_lay_price))
+                print("Available lay size: " + str(available_lay_size))
+                ## If laying odds are below what I backed...(profit)
+                ## (Replace 3.8 with best_lay_price.)
+                if best_lay_price <= back_draw_odds_under_3point5_list[index_of_smallest_time_left]: #and available_lay_size > 10:
                     ## Bet Calculations
-                    ## Calculates back size for a guaranteed profit.
-                    back_size = (lay_draw_odds_under_3point5_list[index_of_smallest_time_left] * 2) / best_back_price
-                    print("Back size: " + str(back_size))
-                    guaranteed_profit = (back_size * best_back_price) - (back_size + liability_list[index_of_smallest_time_left])
+                    ## Calculates lay size for a guaranteed profit.
+                    lay_size = (back_draw_odds_under_3point5_list[index_of_smallest_time_left] * 2) / best_lay_price
+                    print("Lay size: " + str(lay_size))
+                    liability = (lay_size * best_lay_price) - lay_size
+                    liability_list.append(liability)                    
+                    guaranteed_profit = (2 * back_draw_odds_under_3point5_list[index_of_smallest_time_left]) - (liability + 2)
                     print("Guaranteed profit: " + str(guaranteed_profit))
                     ## Writes bet details to text file.
                     current_time = time.strftime('%Y-%m-%dT%H:%M:%S.000Z', time.gmtime())
                     f = open(filename, "a")
                     f.write("Date: " + current_time + "\n")
                     f.write("Match: " + eventName_list[index_of_smallest_time_left] + "\n")
-                    f.write("Liability: " + str(liability_list[index_of_smallest_time_left]) + "\n")
-                    f.write("Back price: " + str(best_back_price) + "\n")
+                    ## f.write("Liability: " + str(liability_list[index_of_smallest_time_left]) + "\n")
+                    f.write("Back price: " + str(back_draw_odds_under_3point5_list[index_of_smallest_time_left]) + "\n")
+                    f.write("Lay price: " + str(best_lay_price) + "\n")
                     f.write("Sold for guaranteed profit: " + str(guaranteed_profit) + "\n")
                     f.close()
                     print("Program Working So Far!")
-                ## Back price is smaller so we have lost money.
+                ## Lay price is larger so we have lost money.
                 else:
-                    ## Calculates back size for a guaranteed loss.
-                    back_size = (lay_draw_odds_under_3point5_list[index_of_smallest_time_left] * 2) / best_back_price
-                    guaranteed_loss = (back_size * best_back_price) - (back_size + liability_list[index_of_smallest_time_left])
+                    ## Calculates lay size for a guaranteed loss.
+                    lay_size = (back_draw_odds_under_3point5_list[index_of_smallest_time_left] * 2) / best_lay_price
+                    liability = (lay_size * best_lay_price) - lay_size
+                    liability_list.append(liability)                    
+                    guaranteed_loss = (2 * back_draw_odds_under_3point5_list[index_of_smallest_time_left]) - (liability + 2)
+                    print("Guaranteed loss: " + str(guaranteed_loss))
                     ## Writes bet details to text file.
                     current_time = time.strftime('%Y-%m-%dT%H:%M:%S.000Z', time.gmtime())
                     f = open(filename, "a")
                     f.write("Date: " + current_time + "\n")
                     f.write("Match: " + eventName_list[index_of_smallest_time_left] + "\n")
-                    f.write("Liability: " + str(liability_list[index_of_smallest_time_left]) + "\n")
-                    f.write("Back price: " + str(best_back_price) + "\n")
+                    ##f.write("Liability: " + str(liability_list[index_of_smallest_time_left]) + "\n")
+                    f.write("Back price: " + str(back_draw_odds_under_3point5_list[index_of_smallest_time_left]) + "\n")
+                    f.write("Lay price: " + str(best_lay_price) + "\n")
                     f.write("Sold for guaranteed loss: " + str(guaranteed_loss) + "\n")
                     f.close()
                     print("Program Working So Far!")

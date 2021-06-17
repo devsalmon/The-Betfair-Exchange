@@ -1,0 +1,20 @@
+Date: 2021-06-08T13:18:21.000Z
+Match: Slovakia U21 v Finland U21
+Back price: 3.5
+Lay price: 1000.0
+Sold for guaranteed loss: -1.9930000000000003
+Date: 2021-06-08T16:18:20.000Z
+Match: NC Magra v USM Alger
+Back price: 3.05
+Lay price: 4.3
+Sold for guaranteed loss: -0.5813953488372094
+Date: 2021-06-08T17:48:17.000Z
+Match: AS Real de Bamako v US Bougouni
+Back price: 3.4
+Lay price: 1000.0
+Sold for guaranteed loss: -1.993199999999999
+Date: 2021-06-08T19:18:15.000Z
+Match: Real Pilar FC v Deportivo Espanol
+Back price: 3.3
+Lay price: 3.2
+Sold for guaranteed profit: 0.0625
